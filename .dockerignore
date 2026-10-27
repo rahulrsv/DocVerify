@@ -6,3 +6,7 @@ var/*.db
 reports/eval_*.json
 reports/latest.*
 .env
+.env.*
+var/
+.DS_Store
+reports/*.md

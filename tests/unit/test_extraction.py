@@ -84,6 +84,13 @@ def test_value_must_appear_in_its_evidence():
     assert any(i.code == "VALUE_NOT_IN_EVIDENCE" for i in ext.issues)
 
 
+@pytest.mark.parametrize("value", ["3076.00", "076.92", "3"])
+def test_partial_amount_is_not_grounded_by_a_larger_number(value):
+    ext = normalize_extraction(_raw(gross_pay=(value, "Gross Pay: $3,076.92")), "D1", SOURCE)
+    assert ext.gross_pay.value is None
+    assert any(i.code == "VALUE_NOT_IN_EVIDENCE" for i in ext.issues)
+
+
 def test_field_not_applicable_to_type_is_dropped():
     raw = RawExtraction.blank("bank_statement")
     raw.employer_name = RawField(value="Jordan Avery", evidence="Employee: Jordan Avery", confidence=None)

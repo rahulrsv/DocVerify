@@ -73,6 +73,14 @@ def test_audit_events_append_only_and_chained(tmp_path):
         conn.execute("DELETE FROM audit_events")
 
 
+def test_processing_runs_cannot_be_deleted(tmp_path):
+    AuditStore(tmp_path / "a.db")
+    conn = sqlite3.connect(tmp_path / "a.db")
+    conn.execute("INSERT INTO processing_runs VALUES ('r1','C1','t','f','[]','mock','m','p','s','pol','APPROVE','api',NULL,1,'[]','{}')")
+    with pytest.raises(sqlite3.IntegrityError, match="immutable"):
+        conn.execute("DELETE FROM processing_runs")
+
+
 def test_tampering_detected_by_chain(tmp_path):
     store = AuditStore(tmp_path / "a.db")
     store.append_event("C1", "CASE_RECEIVED", {"n": 1})

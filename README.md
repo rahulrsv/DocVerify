@@ -29,7 +29,7 @@ cd docverify
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 
-make test        # 140 tests, offline (1 live-LLM test skipped without a key)
+make test        # 144 tests, offline (1 live-LLM test skipped without a key)
 make eval        # golden-set evaluation in mock mode, compared to the stored baseline
 make api         # FastAPI on http://localhost:8100  (docs: /docs)
 make dashboard   # Streamlit on http://localhost:8502 (in a second terminal)
@@ -101,7 +101,7 @@ thresholds, current results).
 
 Mock mode measures the **regex extractor, not an LLM**, and every report is labeled that way.
 
-* Tests: 140 passed, 1 skipped (live OpenAI test; no key available).
+* Tests: 144 passed, 1 skipped (live OpenAI test; no key available).
 * Golden set: 49/50 cases pass. Field accuracy 98.8%, critical-field error rate 1.3%,
   classification macro F1 0.970. End-to-end outcome agreement 98.0% with a false approval
   rate of 0.0%. Gold-extraction policy agreement is 100%.

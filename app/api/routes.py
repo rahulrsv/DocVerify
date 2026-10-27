@@ -7,6 +7,7 @@ from datetime import date
 from typing import Annotated, Any
 
 from fastapi import APIRouter, File, Form, HTTPException, Request, Response, UploadFile, status
+from fastapi.concurrency import run_in_threadpool
 
 from app.api.schemas import AuditResponse, ErrorResponse, EvalRunRequest, HealthResponse
 from app.audit.store import AuditStore
@@ -83,7 +84,7 @@ async def process_documents(
 
     documents: list[DocumentInput] = []
     for upload in files:
-        # Read at most limit+1 bytes so oversized uploads are rejected without buffering them fully.
+        # Starlette has already spooled the upload; reading limit+1 bytes keeps oversized files out of memory here.
         content = await upload.read(settings.max_upload_bytes + 1)
         try:
             validate_upload(upload.filename or "", content, settings.max_upload_bytes)
@@ -91,7 +92,8 @@ async def process_documents(
             raise HTTPException(_REJECTION_STATUS[exc.reason], str(exc)) from exc
         documents.append(DocumentInput(filename=upload.filename or "upload", content=content))
 
-    result = _processor(request).process_case(case_id, documents, as_of_date=as_of_date, force=force)
+    # Processing is synchronous (PDF parsing, provider calls with retries); keep it off the event loop.
+    result = await run_in_threadpool(_processor(request).process_case, case_id, documents, as_of_date=as_of_date, force=force)
     if result.idempotent_replay:
         response.status_code = status.HTTP_200_OK
     return result

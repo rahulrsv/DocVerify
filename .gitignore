@@ -8,3 +8,10 @@ reports/*.json
 reports/*.md
 !reports/baselines/
 !reports/baselines/*.json
+.env.*
+!.env.example
+*.db
+*.sqlite3
+.DS_Store
+.idea/
+.vscode/

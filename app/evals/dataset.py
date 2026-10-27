@@ -8,7 +8,17 @@ from pathlib import Path
 from typing import Any
 
 from app.extraction.normalize import parse_money
-from app.models.common import CRITICAL_FIELDS_BY_TYPE, DATE_FIELDS, FIELDS_BY_TYPE, MONEY_FIELDS, SCALAR_FIELDS, DocumentType, EmploymentStatus, ExtractionStatus, PayFrequency
+from app.models.common import (
+    CRITICAL_FIELDS_BY_TYPE,
+    DATE_FIELDS,
+    FIELDS_BY_TYPE,
+    MONEY_FIELDS,
+    SCALAR_FIELDS,
+    DocumentType,
+    EmploymentStatus,
+    ExtractionStatus,
+    PayFrequency,
+)
 from app.models.extraction import BankDeposit, DocumentExtraction, ExtractedField
 
 DOCUMENTS_SUBDIR = Path("..") / "synthetic_documents"

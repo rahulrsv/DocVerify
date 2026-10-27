@@ -61,6 +61,8 @@ CREATE TRIGGER IF NOT EXISTS audit_events_no_delete BEFORE DELETE ON audit_event
 BEGIN SELECT RAISE(ABORT, 'audit_events is append-only'); END;
 CREATE TRIGGER IF NOT EXISTS processing_runs_no_update BEFORE UPDATE ON processing_runs
 BEGIN SELECT RAISE(ABORT, 'processing_runs are immutable; record a new run instead'); END;
+CREATE TRIGGER IF NOT EXISTS processing_runs_no_delete BEFORE DELETE ON processing_runs
+BEGIN SELECT RAISE(ABORT, 'processing_runs are immutable; record a new run instead'); END;
 """
 
 GENESIS_HASH = "0" * 64

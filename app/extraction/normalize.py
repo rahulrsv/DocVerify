@@ -189,10 +189,21 @@ def evidence_in_source(evidence: str, source_canon: str) -> bool:
     return bool(evidence.strip()) and _canon(evidence) in source_canon
 
 
+_AMOUNT_TOKEN = re.compile(r"\d[\d,]*(?:\.\d+)?")
+
+
+def _evidence_amount(token: str) -> Decimal:
+    return Decimal(token.replace(",", "")).quantize(CENT, rounding=ROUND_HALF_UP)
+
+
 def value_supported_by_evidence(field: str, raw_value: str, evidence: str) -> bool:
     if field in MONEY_FIELDS:
-        digits = re.sub(r"\D", "", raw_value.split(".")[0])
-        return bool(digits) and digits in re.sub(r"\D", "", evidence)
+        # The amount must equal a whole number in the evidence, so "123" is not "grounded" by "1,234.56".
+        try:
+            amount = parse_money(raw_value)
+        except NormalizationError:
+            return False
+        return any(_evidence_amount(token) == abs(amount) for token in _AMOUNT_TOKEN.findall(evidence))
     if field in TEXT_FIELDS:
         return _canon(raw_value) in _canon(evidence)
     return True  # dates and enums are legitimately reformatted (e.g. "every two weeks" -> BIWEEKLY)
