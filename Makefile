@@ -1,6 +1,6 @@
 .PHONY: install test eval baseline eval-llm data api dashboard up down clean
 
-PY ?= python
+PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
 install:
 	$(PY) -m pip install -r requirements-dev.txt
