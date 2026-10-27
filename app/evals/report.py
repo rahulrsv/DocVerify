@@ -11,7 +11,7 @@ def render_markdown(report: dict[str, Any]) -> str:
     meta, m, cmp = report["metadata"], report["metrics"], report["comparison"]
     ext, cls, e2e, gold, der = m["extraction"], m["classification"], m["policy_end_to_end"], m["policy_gold_extraction"], m["derived"]
     out = [
-        f"# IncomeLens evaluation — {meta['eval_run_id']}",
+        f"# DocVerify evaluation — {meta['eval_run_id']}",
         "",
         f"> **{meta['mode_label']}**",
         "",

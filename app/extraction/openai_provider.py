@@ -37,7 +37,7 @@ class OpenAIExtractionProvider:
     ) -> None:
         if client is None:
             if not api_key:
-                raise ProviderError("auth", "OPENAI_API_KEY is not set; use INCOMELENS_PROVIDER=mock to run offline")
+                raise ProviderError("auth", "OPENAI_API_KEY is not set; use DOCVERIFY_PROVIDER=mock to run offline")
             # SDK-level retries disabled so every attempt is visible and bounded here.
             client = openai.OpenAI(api_key=api_key, timeout=timeout_s, max_retries=0)
         self._client = client

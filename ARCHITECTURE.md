@@ -1,6 +1,6 @@
 # Architecture
 
-IncomeLens AI is a single Python service (FastAPI) with a Streamlit client, a SQLite
+DocVerify is a single Python service (FastAPI) with a Streamlit client, a SQLite
 store and an offline evaluation harness. There are no queues, microservices or agent
 frameworks; each concern is a small module with typed inputs and outputs.
 

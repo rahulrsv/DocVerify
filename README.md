@@ -1,6 +1,7 @@
-# IncomeLens AI
+# DocVerify
 
-**An auditable income-document underwriting simulation.** It extracts income and employment
+**Auditable document intelligence: extract, verify, decide, evaluate.** Demonstrated on a
+synthetic income-underwriting use case. It extracts income and employment
 facts from synthetic pay stubs, employment letters and bank statements with an LLM (or a
 deterministic offline extractor). It validates and grounds those facts and calculates income
 without any model arithmetic. Configurable deterministic rules then produce an explainable
@@ -24,7 +25,7 @@ upload → text extraction → injection scan → classification + structured ex
 Requires Python 3.12 or 3.13 (the versions tested). Newer versions may fail to install: on 3.15, PyMuPDF's onnxruntime dependency has no wheels yet.
 
 ```bash
-cd income-lens-ai
+cd docverify
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 
@@ -46,7 +47,7 @@ Live LLM extraction:
 
 ```bash
 export OPENAI_API_KEY=...            # read from the environment only, never committed
-export INCOMELENS_PROVIDER=openai    # API and dashboard use the LLM
+export DOCVERIFY_PROVIDER=openai    # API and dashboard use the LLM
 make eval-llm                        # golden-set evaluation with the real model
 ```
 

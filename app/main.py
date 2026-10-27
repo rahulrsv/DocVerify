@@ -24,7 +24,7 @@ def create_app(settings: Settings | None = None, provider: ExtractionProvider | 
         max_text_chars=settings.max_text_chars,
     )
     app = FastAPI(
-        title="IncomeLens AI",
+        title="DocVerify",
         version="0.1.0",
         description=(
             "Auditable income-document underwriting **simulation**. Synthetic data only. "

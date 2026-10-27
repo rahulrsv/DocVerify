@@ -40,7 +40,7 @@ def test_cli_exits_nonzero_when_threshold_fails(tmp_path, monkeypatch):
     golden.mkdir()
     (golden / "cases.jsonl").write_text((GOLDEN / "cases.jsonl").read_text())
     (golden / "eval_thresholds.json").write_text(json.dumps({"thresholds": {"policy_end_to_end.outcome_agreement": {"min": 1.0}}}))
-    monkeypatch.setenv("INCOMELENS_DB_PATH", str(tmp_path / "e.db"))
+    monkeypatch.setenv("DOCVERIFY_DB_PATH", str(tmp_path / "e.db"))
     from app.evals import dataset
 
     monkeypatch.setattr(dataset, "DOCUMENTS_SUBDIR", GOLDEN.parent / "synthetic_documents")

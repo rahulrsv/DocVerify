@@ -23,12 +23,12 @@ def _pct(v: float | None) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run the IncomeLens golden-set evaluation")
+    parser = argparse.ArgumentParser(description="Run the DocVerify golden-set evaluation")
     parser.add_argument("--dataset", type=Path, default=None, help="Golden dataset directory (default: data/golden)")
     parser.add_argument("--provider", choices=["mock", "openai"], default="mock")
     parser.add_argument("--baseline", type=Path, default=None, help="Baseline report (default: reports/baselines/<provider>.json)")
     parser.add_argument("--reports-dir", type=Path, default=None)
-    parser.add_argument("--audit-db", type=Path, default=None, help="SQLite file for evaluation runs (default: INCOMELENS_DB_PATH)")
+    parser.add_argument("--audit-db", type=Path, default=None, help="SQLite file for evaluation runs (default: DOCVERIFY_DB_PATH)")
     parser.add_argument("--cases", nargs="*", default=None, help="Optional subset of case IDs")
     parser.add_argument("--update-baseline", action="store_true", help="Store this run as the new baseline")
     parser.add_argument("--fail-on-regression", action="store_true", help="Exit 2 when regressions vs baseline are found")

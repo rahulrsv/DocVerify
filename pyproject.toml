@@ -1,5 +1,5 @@
 [project]
-name = "income-lens-ai"
+name = "docverify"
 version = "0.1.0"
 description = "Auditable income-document underwriting simulation (synthetic data, engineering demo)"
 requires-python = ">=3.12,<3.14"

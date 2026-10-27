@@ -572,7 +572,7 @@ def render_pdf(text: str | None) -> bytes:
         page.insert_textbox(pymupdf.Rect(40, 40, 572, 800), text, fontsize=9, fontname="cour")
     else:  # simulate a scan: an image-like drawing with no text layer
         page.draw_rect(pymupdf.Rect(60, 60, 540, 300), color=(0.2, 0.2, 0.2), fill=(0.85, 0.85, 0.85))
-    doc.set_metadata({"producer": "IncomeLens synthetic generator", "creationDate": "D:20261001000000", "modDate": "D:20261001000000"})
+    doc.set_metadata({"producer": "DocVerify synthetic generator", "creationDate": "D:20261001000000", "modDate": "D:20261001000000"})
     data = doc.tobytes(garbage=3, deflate=True, no_new_id=True)
     doc.close()
     return data

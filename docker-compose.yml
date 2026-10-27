@@ -5,7 +5,7 @@ services:
       - path: .env
         required: false
     environment:
-      INCOMELENS_DB_PATH: /app/var/incomelens.db
+      DOCVERIFY_DB_PATH: /app/var/docverify.db
     ports:
       - "8100:8000"
     volumes:

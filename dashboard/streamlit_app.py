@@ -1,4 +1,4 @@
-"""IncomeLens AI demo dashboard. Talks to the FastAPI backend over HTTP."""
+"""DocVerify demo dashboard. Talks to the FastAPI backend over HTTP."""
 
 import json
 import os
@@ -15,7 +15,7 @@ GOLDEN = ROOT / "data" / "golden" / "cases.jsonl"
 OUTCOME_STYLE = {"APPROVE": ("green", "APPROVE"), "REFER_FOR_REVIEW": ("orange", "REFER FOR REVIEW"), "INSUFFICIENT_EVIDENCE": ("red", "INSUFFICIENT EVIDENCE")}
 RULE_ICON = {"PASS": "✅", "FAIL": "❌", "NOT_APPLICABLE": "➖"}
 
-st.set_page_config(page_title="IncomeLens AI", page_icon="📄", layout="wide")
+st.set_page_config(page_title="DocVerify", page_icon="📄", layout="wide")
 
 
 def api(method: str, path: str, **kwargs):
@@ -45,13 +45,13 @@ def outcome_badge(outcome: str) -> None:
 
 # ----------------------------------------------------------------------- header
 
-st.title("IncomeLens AI")
-st.caption("Auditable income-document underwriting **simulation** · synthetic data only · outcomes are demonstration-rule results, not credit decisions")
+st.title("DocVerify")
+st.caption("Auditable document intelligence · income-underwriting **simulation** · synthetic data only · outcomes are demonstration-rule results, not credit decisions")
 code, health = api("GET", "/health")
 if health and code == 200:
     st.caption(f"API `{API_URL}` · provider `{health['provider']}` / `{health['model']}` · prompt `{health['prompt_version']}` · policy `{health['policy_version']}` · schema `{health['schema_version']}`")
     if health["provider"] == "mock":
-        st.info("Extraction is running in **mock mode** (deterministic rule-based extractor, not an LLM). Set INCOMELENS_PROVIDER=openai for live extraction.")
+        st.info("Extraction is running in **mock mode** (deterministic rule-based extractor, not an LLM). Set DOCVERIFY_PROVIDER=openai for live extraction.")
 else:
     st.stop()
 

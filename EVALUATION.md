@@ -1,6 +1,6 @@
 # Evaluation methodology
 
-Evaluation is a first-class part of IncomeLens. One command runs the full pipeline over a
+Evaluation is a first-class part of DocVerify. One command runs the full pipeline over a
 version-controlled golden dataset and reports extraction quality and policy correctness
 separately. It compares the run with a stored baseline and exits nonzero when a critical
 threshold fails.

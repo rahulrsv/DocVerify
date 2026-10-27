@@ -1,6 +1,6 @@
 {
   "policy_version": "demo-policy-1.0",
-  "description": "Synthetic demonstration rules for IncomeLens AI. Not real mortgage underwriting criteria.",
+  "description": "Synthetic demonstration rules for DocVerify. Not real mortgage underwriting criteria.",
   "outcome_precedence": ["REFER_FOR_REVIEW", "INSUFFICIENT_EVIDENCE", "APPROVE"],
   "thresholds": {
     "min_recurring_annual_income": "50000.00",
