@@ -1,0 +1,17 @@
+HIGHLAND ENERGY LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Highland Energy Ltd.
+Employee: Jack Murphy
+Employee ID: E-41ECC
+Pay Period: 2026-11-30 to 2026-12-13
+Pay Date: 2026-12-18
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $3,846.15
+Deductions: $1,046.15
+Net Pay: $2,800.00
+YTD Gross: $96,153.75
+--------------------------------------------
+Synthetic document for engineering demonstration only.

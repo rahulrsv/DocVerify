@@ -1,0 +1,17 @@
+VANTAGE AUTO SALES LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Vantage Auto Sales Ltd.
+Employee: Ruby Osei
+Employee ID: E-74EDB
+Pay Period: 2026-08-31 to 2026-09-13
+Pay Date: 2026-09-18
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,100.00
+Deductions: $460.00
+Net Pay: $1,640.00
+YTD Gross: $39,900.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

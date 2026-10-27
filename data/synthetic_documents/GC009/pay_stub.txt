@@ -1,0 +1,17 @@
+AURORA DENTAL GROUP INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Aurora Dental Group Inc.
+Employee: Noah Tremblay
+Employee ID: E-668CB
+Pay Period: 2026-09-01 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Monthly
+Currency: CAD
+
+Gross Pay: $5,000.00
+Deductions: $1,189.50
+Net Pay: $3,810.50
+YTD Gross: $45,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

@@ -1,0 +1,17 @@
+NORTHGATE PHARMA LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Northgate Pharma Ltd.
+Employee: Stella Ivanova
+Employee ID: E-54985
+Pay Period: 2026-09-16 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Semi-monthly
+Currency: CAD
+
+Gross Pay: $3,250.00
+Deductions: $840.00
+Net Pay: $2,410.00
+YTD Gross: $58,500.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

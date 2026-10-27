@@ -1,0 +1,17 @@
+TIDEWATER DINER LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Tidewater Diner Ltd.
+Employee: Paige Mitchell
+Employee ID: E-B16E9
+Pay Period: 2026-09-28 to 2026-10-04
+Pay Date: 2026-10-09
+Pay Frequency: Weekly
+Currency: CAD
+
+Gross Pay: $800.00
+Deductions: $145.00
+Net Pay: $655.00
+YTD Gross: $32,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

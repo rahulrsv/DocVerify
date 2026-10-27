@@ -1,0 +1,17 @@
+RIVERBEND MEDIA INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Riverbend Media Inc.
+Employee: Hana Sato
+Employee ID: E-230DD
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,307.69
+Deductions: $551.49
+Net Pay: $1,756.20
+YTD Gross: $46,153.80
+--------------------------------------------
+Synthetic document for engineering demonstration only.

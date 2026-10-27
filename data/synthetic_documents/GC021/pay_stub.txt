@@ -1,0 +1,17 @@
+WESTBROOK ANALYTICS INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Westbrook Analytics Inc.
+Employee: Lucas Fernandes
+Employee ID: E-F54C4
+Pay Period: 2026-09-16 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Semi-monthly
+Currency: CAD
+
+Gross Pay: $3,000.00
+Deductions: $750.00
+Net Pay: $2,250.00
+YTD Gross: $54,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

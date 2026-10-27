@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+var/
+reports/*.json
+reports/*.md
+!reports/baselines/
+!reports/baselines/*.json

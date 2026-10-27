@@ -1,0 +1,17 @@
+CRESCENT ROBOTICS INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Crescent Robotics Inc.
+Employee: Henry Adebayo
+Employee ID: E-68C7E
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,884.62
+Deductions: $734.62
+Net Pay: $2,150.00
+YTD Gross: $57,692.40
+--------------------------------------------
+Synthetic document for engineering demonstration only.

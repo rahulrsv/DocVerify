@@ -1,0 +1,17 @@
+SWIFTCOURIER NETWORK INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: SwiftCourier Network Inc.
+Employee: Felix Bauer
+Employee ID: E-5CE08
+Pay Period: 2026-09-01 to 2026-09-30
+Pay Date: 2026-10-05
+Pay Frequency: Per assignment
+Currency: CAD
+
+Gross Pay: $4,120.50
+Deductions: $820.50
+Net Pay: $3,300.00
+YTD Gross: $35,880.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

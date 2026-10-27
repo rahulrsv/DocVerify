@@ -1,0 +1,16 @@
+EVERGREEN SOLAR CO.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Evergreen Solar Co.
+Employee: Mateo Rossi
+Employee ID: E-997D4
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Currency: CAD
+
+Gross Pay: $2,692.31
+Deductions: $692.31
+Net Pay: $2,000.00
+YTD Gross: $53,846.20
+--------------------------------------------
+Synthetic document for engineering demonstration only.

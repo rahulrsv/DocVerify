@@ -1,0 +1,35 @@
+services:
+  api:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      INCOMELENS_DB_PATH: /app/var/incomelens.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./var:/app/var
+      - ./reports:/app/reports
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  dashboard:
+    build: .
+    command: ["streamlit", "run", "dashboard/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true"]
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  # One-off: docker compose run --rm tests
+  tests:
+    build: .
+    command: ["pytest", "-q"]
+    profiles: ["tools"]

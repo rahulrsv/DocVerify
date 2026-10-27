@@ -1,0 +1,13 @@
+=== PAY STATEMENT ===
+Company: Cedar Analytics Corp.
+Pay to: Sofia Lindqvist
+Period: Sep 1, 2026 - Sep 30, 2026
+Paid on: September 30, 2026
+Frequency: Monthly
+
+Description               Current   Year-to-Date
+Gross Earnings           7,500.00      67,500.00
+Net Pay                  5,420.75      48,786.75
+
+All amounts in CAD
+Synthetic document for engineering demonstration only.

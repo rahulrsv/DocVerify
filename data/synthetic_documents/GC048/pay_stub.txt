@@ -1,0 +1,17 @@
+FALCON RIDGE MINING LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Falcon Ridge Mining Ltd.
+Employee: Connor Doyle
+Employee ID: E-83B1E
+Pay Period: 2026-09-01 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Monthly
+Currency: CAD
+
+Gross Pay: $7,333.33
+Deductions: $2,033.33
+Net Pay: $5,300.00
+YTD Gross: $65,999.97
+--------------------------------------------
+Synthetic document for engineering demonstration only.

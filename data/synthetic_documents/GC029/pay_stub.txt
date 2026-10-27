@@ -1,0 +1,17 @@
+THORNBURY CONSULTING INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Thornbury Consulting Inc.
+Employee: Samuel Weiss
+Employee ID: E-FEA6D
+Pay Period: 2026-09-16 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Semi-monthly
+Currency: CAD
+
+Gross Pay: $2,800.00
+Deductions: $-350.00
+Net Pay: $3,150.00
+YTD Gross: $50,400.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

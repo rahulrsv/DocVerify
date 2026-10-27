@@ -1,0 +1,15 @@
+{
+  "policy_version": "demo-policy-1.0",
+  "description": "Synthetic demonstration rules for IncomeLens AI. Not real mortgage underwriting criteria.",
+  "outcome_precedence": ["REFER_FOR_REVIEW", "INSUFFICIENT_EVIDENCE", "APPROVE"],
+  "thresholds": {
+    "min_recurring_annual_income": "50000.00",
+    "salary_tolerance_pct": "5.00",
+    "max_pay_stub_age_days": 60,
+    "variable_income_threshold_pct": "10.00"
+  },
+  "required_document_types": ["pay_stub", "employment_letter"],
+  "allowed_currencies": ["CAD"],
+  "disabled_rules": [],
+  "rule_overrides": {}
+}

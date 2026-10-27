@@ -1,0 +1,17 @@
+HARBOURFRONT FOODS CO.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Harbourfront Foods Co.
+Employee: Marcus Oyelaran
+Employee ID: E-B21C1
+Pay Period: 2026-09-28 to 2026-10-04
+Pay Date: 2026-10-09
+Pay Frequency: Weekly
+Currency: CAD
+
+Gross Pay: $1,250.00
+Deductions: $281.60
+Net Pay: $968.40
+YTD Gross: $50,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

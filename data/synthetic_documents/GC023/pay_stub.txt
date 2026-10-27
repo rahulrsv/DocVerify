@@ -1,0 +1,17 @@
+NORDIC TIMBER CO.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Nordic Timber Co.
+Employee: Owen Fraser
+Employee ID: E-E0CEB
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $3,269.23
+Deductions: $856.57
+Net Pay: $2,412.66
+YTD Gross: $65,384.60
+--------------------------------------------
+Synthetic document for engineering demonstration only.

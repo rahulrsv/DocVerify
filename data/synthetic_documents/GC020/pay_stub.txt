@@ -1,0 +1,17 @@
+HARBOUR LOGISTICS LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Harbour Logistics Ltd.
+Employee: Ava Novak
+Employee ID: E-C8065
+Pay Period: 2026-09-01 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Monthly
+Currency: CAD
+
+Gross Pay: $6,000.00
+Deductions: $1,600.00
+Net Pay: $4,400.00
+YTD Gross: $54,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

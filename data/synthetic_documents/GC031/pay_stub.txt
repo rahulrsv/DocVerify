@@ -1,0 +1,17 @@
+REDWOOD DATA SYSTEMS INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Redwood Data Systems Inc.
+Employee: Caleb Ward
+Employee ID: E-CB373
+Pay Period: 2026-09-16 to 2026-09-30
+Pay Date: 2026-09-30
+Pay Frequency: Semi-monthly
+Currency: CAD
+
+Gross Pay: $3,541.67
+Deductions: $941.67
+Net Pay: $2,600.00
+YTD Gross: $63,750.06
+--------------------------------------------
+Synthetic document for engineering demonstration only.

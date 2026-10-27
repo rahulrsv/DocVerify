@@ -1,0 +1,16 @@
+FIRST MAPLE CREDIT UNION
+ACCOUNT TRANSACTION SUMMARY
+Account Holder: Zoe Laurent
+Account: ****4821
+Statement Period: 2026-08-15 to 2026-10-10
+Currency: CAD
+
+Opening Balance: 4,210.55
+
+Date        Description                                       Amount
+2026-09-18  PAYROLL DEP HALCYON GAMES                       1,845.20
+2026-09-21  COFFEE HOUSE                                       -6.75
+2026-10-02  PAYROLL DEP HALCYON GAMES                       1,845.20
+
+Closing Balance: 6,882.10
+Synthetic document for engineering demonstration only.

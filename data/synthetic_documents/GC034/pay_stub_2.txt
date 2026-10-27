@@ -1,0 +1,17 @@
+GREENLEAF GROCERS LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Greenleaf Grocers Ltd.
+Employee: Ivy Thompson
+Employee ID: E-C1A19
+Pay Period: 2026-09-21 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Weekly
+Currency: CAD
+
+Gross Pay: $1,240.00
+Deductions: $255.00
+Net Pay: $985.00
+YTD Gross: $37,440.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

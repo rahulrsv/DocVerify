@@ -1,0 +1,18 @@
+FIRST MAPLE CREDIT UNION
+ACCOUNT TRANSACTION SUMMARY
+Account Holder: Owen Fraser
+Account: ****4821
+Statement Period: 2026-08-15 to 2026-10-10
+Currency: CAD
+
+Opening Balance: 4,210.55
+
+Date        Description                                       Amount
+2026-09-18  PAYROLL DEP NORDIC TIMBER                       1,200.00
+2026-09-20  GROCERY MART #221                                -142.33
+2026-09-24  HYDRO UTILITIES                                   -96.40
+2026-10-02  PAYROLL DEP NORDIC TIMBER                       1,200.00
+2026-10-05  RENT PAYMENT                                   -1,650.00
+
+Closing Balance: 6,882.10
+Synthetic document for engineering demonstration only.

@@ -1,0 +1,29 @@
+{
+  "dataset_version": "golden-1.0",
+  "case_count": 50,
+  "document_count": 108,
+  "cases_sha256": "eee705b88f26bd1f039a3223586f5b42af3fdc3a2e3ebde45c065fc58d795a81",
+  "categories": {
+    "clean": 10,
+    "missing_fields": 8,
+    "conflicting_information": 5,
+    "implausible_dates": 6,
+    "duplicate": 2,
+    "variable_income": 3,
+    "malformed": 4,
+    "ambiguous": 2,
+    "misleading_text": 3,
+    "prompt_injection": 3,
+    "policy_threshold": 1,
+    "employment_status": 1,
+    "currency": 1,
+    "free_form_layout": 1
+  },
+  "outcomes": {
+    "APPROVE": 16,
+    "REFER_FOR_REVIEW": 26,
+    "INSUFFICIENT_EVIDENCE": 8
+  },
+  "default_as_of_date": "2026-10-15",
+  "labeling": "Ground truth is defined by this generator's hand-written specification; outcomes and failed rules are hand-labeled with reasons."
+}

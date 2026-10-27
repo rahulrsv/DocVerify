@@ -1,0 +1,11 @@
+{
+  "_comment": "Critical thresholds. The evaluation command exits nonzero if any fails. Paths index into report.metrics.",
+  "thresholds": {
+    "policy_end_to_end.false_approval_rate": {"max": 0.0},
+    "policy_end_to_end.outcome_agreement": {"min": 0.85},
+    "policy_gold_extraction.outcome_agreement": {"min": 1.0},
+    "policy_gold_extraction.rule_level_agreement": {"min": 1.0},
+    "classification.macro_f1": {"min": 0.9},
+    "extraction.critical_field_error_rate": {"max": 0.1}
+  }
+}

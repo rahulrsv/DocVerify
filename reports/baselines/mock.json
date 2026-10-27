@@ -1,0 +1,1647 @@
+{
+  "metadata": {
+    "eval_run_id": "eval_20261027T013757Z_e02ee3",
+    "created_at": "2026-10-27T01:37:58+00:00",
+    "mode": "mock",
+    "mode_label": "MOCK MODE: metrics measure the deterministic rule-based extractor (rules-extractor-1.0), not an LLM. They say nothing about LLM extraction quality.",
+    "provider": "mock",
+    "model": "rules-extractor-1.0",
+    "prompt_version": "n/a (rule-based)",
+    "schema_version": "extraction-schema-1.0",
+    "policy_version": "demo-policy-1.0",
+    "dataset_version": "golden-1.0",
+    "dataset_sha256": "eee705b88f26bd1f039a3223586f5b42af3fdc3a2e3ebde45c065fc58d795a81",
+    "dataset_integrity_ok": true,
+    "case_count": 50,
+    "subset": false,
+    "provider_errors": 0,
+    "git_commit": null,
+    "duration_s": 1.47
+  },
+  "metrics": {
+    "extraction": {
+      "field_rows": 806,
+      "overall_field_accuracy": 0.9876,
+      "field_weighted_score": 0.9874,
+      "critical_field_error_rate": 0.0128,
+      "missing_field_detection_rate": 1.0,
+      "unsupported_value_rate": 0.0,
+      "present_field_recall": 0.9874,
+      "money_exact_match_rate": 0.9844,
+      "money_mean_abs_error": 0.0,
+      "deposit_precision": 1.0,
+      "deposit_recall": 1.0,
+      "per_field": [
+        {
+          "field": "base_annual_salary",
+          "rows": 48,
+          "correct": 48,
+          "accuracy": 1.0
+        },
+        {
+          "field": "currency",
+          "rows": 104,
+          "correct": 103,
+          "accuracy": 0.9904
+        },
+        {
+          "field": "deposits",
+          "rows": 6,
+          "correct": 6,
+          "accuracy": 1.0
+        },
+        {
+          "field": "employee_name",
+          "rows": 104,
+          "correct": 103,
+          "accuracy": 0.9904
+        },
+        {
+          "field": "employer_name",
+          "rows": 98,
+          "correct": 97,
+          "accuracy": 0.9898
+        },
+        {
+          "field": "employment_start_date",
+          "rows": 48,
+          "correct": 48,
+          "accuracy": 1.0
+        },
+        {
+          "field": "employment_status",
+          "rows": 48,
+          "correct": 48,
+          "accuracy": 1.0
+        },
+        {
+          "field": "gross_pay",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "net_pay",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "pay_date",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "pay_frequency",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "pay_period_end",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "pay_period_start",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        },
+        {
+          "field": "ytd_gross",
+          "rows": 50,
+          "correct": 49,
+          "accuracy": 0.98
+        }
+      ],
+      "per_document_type": [
+        {
+          "doc_type": "bank_statement",
+          "rows": 18,
+          "correct": 18,
+          "accuracy": 1.0
+        },
+        {
+          "doc_type": "employment_letter",
+          "rows": 288,
+          "correct": 288,
+          "accuracy": 1.0
+        },
+        {
+          "doc_type": "pay_stub",
+          "rows": 500,
+          "correct": 490,
+          "accuracy": 0.98
+        }
+      ],
+      "definitions": {
+        "overall_field_accuracy": "matching (document, field) pairs / all pairs applicable to the expected document type",
+        "field_weighted_score": "weighted matches / total weight; critical fields weight 2.0, others 1.0",
+        "critical_field_error_rate": "mismatched critical (document, field) pairs / critical pairs",
+        "missing_field_detection_rate": "pairs where label is null and extractor returned null / pairs where label is null",
+        "unsupported_value_rate": "pairs where label is null but extractor returned a value / pairs where label is null",
+        "present_field_recall": "pairs where label has a value and extractor returned any value / pairs where label has a value",
+        "money_exact_match_rate": "money pairs equal to the cent / money pairs with a labeled value",
+        "money_mean_abs_error": "mean |expected - actual| over money pairs where both are non-null",
+        "deposit_precision": "correct (date, amount) deposits / extracted deposits",
+        "deposit_recall": "correct (date, amount) deposits / labeled deposits"
+      }
+    },
+    "classification": {
+      "documents": 108,
+      "accuracy": 0.9907,
+      "macro_f1": 0.9697,
+      "per_class": {
+        "pay_stub": {
+          "support": 50,
+          "precision": 1.0,
+          "recall": 0.98,
+          "f1": 0.9899
+        },
+        "employment_letter": {
+          "support": 48,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "bank_statement": {
+          "support": 6,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "unknown": {
+          "support": 4,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889
+        }
+      },
+      "definition": "Per-class precision = TP/(TP+FP), recall = TP/(TP+FN) over documents; macro F1 averages classes with support > 0."
+    },
+    "derived": {
+      "cases": 50,
+      "recurring_income_agreement": 0.98,
+      "income_pattern_agreement": 0.98,
+      "definitions": {
+        "recurring_income_agreement": "cases whose recurring annual income equals the label to the cent (both null counts as agreement) / all cases",
+        "income_pattern_agreement": "cases whose RECURRING/VARIABLE/UNKNOWN pattern equals the label / all cases"
+      }
+    },
+    "policy_end_to_end": {
+      "cases": 50,
+      "outcome_agreement": 0.98,
+      "rule_level_agreement": 0.9973,
+      "false_approval_rate": 0.0,
+      "incorrect_escalation_rate": 0.0417,
+      "missing_evidence_detection_rate": 1.0,
+      "confusion_matrix": {
+        "APPROVE": {
+          "APPROVE": 15,
+          "REFER_FOR_REVIEW": 1,
+          "INSUFFICIENT_EVIDENCE": 0
+        },
+        "REFER_FOR_REVIEW": {
+          "APPROVE": 0,
+          "REFER_FOR_REVIEW": 26,
+          "INSUFFICIENT_EVIDENCE": 0
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "APPROVE": 0,
+          "REFER_FOR_REVIEW": 0,
+          "INSUFFICIENT_EVIDENCE": 8
+        }
+      },
+      "per_rule": {
+        "R001_REQUIRED_DOCUMENTS": {
+          "expected_fail": 7,
+          "actual_fail": 8,
+          "agreement": 0.98
+        },
+        "R002_CRITICAL_FIELDS_PRESENT": {
+          "expected_fail": 4,
+          "actual_fail": 4,
+          "agreement": 1.0
+        },
+        "R003_DOCUMENTS_READABLE": {
+          "expected_fail": 4,
+          "actual_fail": 5,
+          "agreement": 0.98
+        },
+        "R004_NO_DUPLICATE_DOCUMENTS": {
+          "expected_fail": 2,
+          "actual_fail": 2,
+          "agreement": 1.0
+        },
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE": {
+          "expected_fail": 6,
+          "actual_fail": 6,
+          "agreement": 1.0
+        },
+        "R006_IDENTITY_CONSISTENT": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R007_EMPLOYER_CONSISTENT": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R008_SALARY_CONSISTENT": {
+          "expected_fail": 2,
+          "actual_fail": 2,
+          "agreement": 1.0
+        },
+        "R009_INCOME_RECURRING": {
+          "expected_fail": 3,
+          "actual_fail": 3,
+          "agreement": 1.0
+        },
+        "R010_INCOME_THRESHOLD": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R011_EMPLOYMENT_ACTIVE": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R012_DOCUMENT_RECENCY": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R013_NO_MANIPULATION_SIGNALS": {
+          "expected_fail": 3,
+          "actual_fail": 3,
+          "agreement": 1.0
+        },
+        "R014_CURRENCY_SUPPORTED": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R015_DEPOSITS_CORROBORATE": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        }
+      },
+      "definitions": {
+        "outcome_agreement": "cases whose final outcome equals the label / all cases",
+        "rule_level_agreement": "(case, rule) pairs where FAIL vs not-FAIL equals the label / cases x rules",
+        "false_approval_rate": "cases output APPROVE whose label is not APPROVE / cases whose label is not APPROVE",
+        "incorrect_escalation_rate": "cases output REFER_FOR_REVIEW whose label is not REFER / cases whose label is not REFER",
+        "missing_evidence_detection_rate": "cases labeled with a failing evidence rule (R001_REQUIRED_DOCUMENTS, R002_CRITICAL_FIELDS_PRESENT, R012_DOCUMENT_RECENCY) where at least one such rule failed / those cases"
+      }
+    },
+    "policy_gold_extraction": {
+      "cases": 50,
+      "outcome_agreement": 1.0,
+      "rule_level_agreement": 1.0,
+      "false_approval_rate": 0.0,
+      "incorrect_escalation_rate": 0.0,
+      "missing_evidence_detection_rate": 1.0,
+      "confusion_matrix": {
+        "APPROVE": {
+          "APPROVE": 16,
+          "REFER_FOR_REVIEW": 0,
+          "INSUFFICIENT_EVIDENCE": 0
+        },
+        "REFER_FOR_REVIEW": {
+          "APPROVE": 0,
+          "REFER_FOR_REVIEW": 26,
+          "INSUFFICIENT_EVIDENCE": 0
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "APPROVE": 0,
+          "REFER_FOR_REVIEW": 0,
+          "INSUFFICIENT_EVIDENCE": 8
+        }
+      },
+      "per_rule": {
+        "R001_REQUIRED_DOCUMENTS": {
+          "expected_fail": 7,
+          "actual_fail": 7,
+          "agreement": 1.0
+        },
+        "R002_CRITICAL_FIELDS_PRESENT": {
+          "expected_fail": 4,
+          "actual_fail": 4,
+          "agreement": 1.0
+        },
+        "R003_DOCUMENTS_READABLE": {
+          "expected_fail": 4,
+          "actual_fail": 4,
+          "agreement": 1.0
+        },
+        "R004_NO_DUPLICATE_DOCUMENTS": {
+          "expected_fail": 2,
+          "actual_fail": 2,
+          "agreement": 1.0
+        },
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE": {
+          "expected_fail": 6,
+          "actual_fail": 6,
+          "agreement": 1.0
+        },
+        "R006_IDENTITY_CONSISTENT": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R007_EMPLOYER_CONSISTENT": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R008_SALARY_CONSISTENT": {
+          "expected_fail": 2,
+          "actual_fail": 2,
+          "agreement": 1.0
+        },
+        "R009_INCOME_RECURRING": {
+          "expected_fail": 3,
+          "actual_fail": 3,
+          "agreement": 1.0
+        },
+        "R010_INCOME_THRESHOLD": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R011_EMPLOYMENT_ACTIVE": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R012_DOCUMENT_RECENCY": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R013_NO_MANIPULATION_SIGNALS": {
+          "expected_fail": 3,
+          "actual_fail": 3,
+          "agreement": 1.0
+        },
+        "R014_CURRENCY_SUPPORTED": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        },
+        "R015_DEPOSITS_CORROBORATE": {
+          "expected_fail": 1,
+          "actual_fail": 1,
+          "agreement": 1.0
+        }
+      },
+      "definitions": {
+        "outcome_agreement": "cases whose final outcome equals the label / all cases",
+        "rule_level_agreement": "(case, rule) pairs where FAIL vs not-FAIL equals the label / cases x rules",
+        "false_approval_rate": "cases output APPROVE whose label is not APPROVE / cases whose label is not APPROVE",
+        "incorrect_escalation_rate": "cases output REFER_FOR_REVIEW whose label is not REFER / cases whose label is not REFER",
+        "missing_evidence_detection_rate": "cases labeled with a failing evidence rule (R001_REQUIRED_DOCUMENTS, R002_CRITICAL_FIELDS_PRESENT, R012_DOCUMENT_RECENCY) where at least one such rule failed / those cases"
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "GC001",
+      "category": "clean",
+      "description": "Biweekly pay stub and matching employment letter",
+      "reason": "Complete evidence; 3,076.92 x 26 = 79,999.92 is within 5% of the documented 80,000 salary and above the 50,000 threshold.",
+      "run_id": "run_6a396775fac94005",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "79999.92",
+      "actual_income": "79999.92"
+    },
+    {
+      "case_id": "GC002",
+      "category": "clean",
+      "description": "Semi-monthly pay statement (tabular layout) and letter",
+      "reason": "4,166.67 x 24 = 100,000.08 matches the 100,000 salary; all evidence present and consistent.",
+      "run_id": "run_11483401b1f04511",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "100000.08",
+      "actual_income": "100000.08"
+    },
+    {
+      "case_id": "GC003",
+      "category": "clean",
+      "description": "Weekly pay stub and letter",
+      "reason": "1,250.00 x 52 = 65,000.00 equals the documented salary.",
+      "run_id": "run_7f91f17175a84787",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "65000.00",
+      "actual_income": "65000.00"
+    },
+    {
+      "case_id": "GC004",
+      "category": "clean",
+      "description": "Monthly pay statement and letter",
+      "reason": "7,500.00 x 12 = 90,000.00 equals the documented salary.",
+      "run_id": "run_4f114daac7ef4c9a",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "90000.00",
+      "actual_income": "90000.00"
+    },
+    {
+      "case_id": "GC005",
+      "category": "clean",
+      "description": "Pay stub, letter and corroborating bank statement",
+      "reason": "Income 70,000.06 matches salary; two payroll deposits equal the stub net pay.",
+      "run_id": "run_dc8addea1b8b4e57",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "70000.06",
+      "actual_income": "70000.06"
+    },
+    {
+      "case_id": "GC006",
+      "category": "clean",
+      "description": "Two consecutive biweekly stubs and letter, all PDF",
+      "reason": "Two stubs with identical gross (0% variation); 3,461.54 x 26 = 90,000.04 matches salary.",
+      "run_id": "run_6c97cd01049f499b",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "90000.04",
+      "actual_income": "90000.04"
+    },
+    {
+      "case_id": "GC007",
+      "category": "clean",
+      "description": "PDF pay stub and PDF letter",
+      "reason": "2,916.67 x 24 = 70,000.08 matches the documented salary.",
+      "run_id": "run_1a4b5dbc4c024fe8",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "70000.08",
+      "actual_income": "70000.08"
+    },
+    {
+      "case_id": "GC008",
+      "category": "clean",
+      "description": "Salary differs from annualized pay but within tolerance",
+      "reason": "79,999.92 vs 82,000 is a 2.44% variance, inside the 5% tolerance.",
+      "run_id": "run_d9c53672a9a14127",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "79999.92",
+      "actual_income": "79999.92"
+    },
+    {
+      "case_id": "GC009",
+      "category": "clean",
+      "description": "Employer written with and without legal suffix",
+      "reason": "'Aurora Dental Group Inc.' and 'Aurora Dental Group' are the same employer after suffix normalization; 60,000 matches.",
+      "run_id": "run_25463e490dc74b77",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "60000.00",
+      "actual_income": "60000.00"
+    },
+    {
+      "case_id": "GC010",
+      "category": "clean",
+      "description": "Bank statement includes non-payroll credits",
+      "reason": "E-transfer and interest are not payroll and must be excluded; payroll deposits corroborate net pay.",
+      "run_id": "run_c79d8529668146c7",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "59999.94",
+      "actual_income": "59999.94"
+    },
+    {
+      "case_id": "GC011",
+      "category": "missing_fields",
+      "description": "Pay stub only; no employment letter",
+      "reason": "Employment letter is a required document type.",
+      "run_id": "run_cd181c9636b54bf4",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "65000.00",
+      "actual_income": "65000.00"
+    },
+    {
+      "case_id": "GC012",
+      "category": "missing_fields",
+      "description": "Employment letter only; no pay stub",
+      "reason": "No pay stub, so recurring income cannot be established.",
+      "run_id": "run_0b87ead923bd41a7",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC013",
+      "category": "missing_fields",
+      "description": "Pay stub omits gross pay",
+      "reason": "Gross pay is critical and absent; the system must not back-calculate it from net or YTD.",
+      "run_id": "run_d3270331eb36446e",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "actual_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC014",
+      "category": "missing_fields",
+      "description": "Pay stub omits the pay period",
+      "reason": "Pay period start and end are critical fields.",
+      "run_id": "run_8add8efe2c624793",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "actual_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.00",
+      "actual_income": "75000.00"
+    },
+    {
+      "case_id": "GC015",
+      "category": "missing_fields",
+      "description": "Letter does not state a salary (optional field)",
+      "reason": "Base salary is optional; with no salary the comparison rule is not applicable and pay stub income suffices.",
+      "run_id": "run_620115801bb54b79",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.12",
+      "actual_income": "75000.12"
+    },
+    {
+      "case_id": "GC016",
+      "category": "missing_fields",
+      "description": "Most recent pay stub is stale",
+      "reason": "Pay date 2026-05-29 is 139 days before the as-of date (limit 60).",
+      "run_id": "run_3674abc24b6e4349",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R012_DOCUMENT_RECENCY"
+      ],
+      "actual_failed_rules": [
+        "R012_DOCUMENT_RECENCY"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.00",
+      "actual_income": "75000.00"
+    },
+    {
+      "case_id": "GC017",
+      "category": "missing_fields",
+      "description": "Pay stub does not state pay frequency",
+      "reason": "Frequency must be stated, not inferred from period length; without it income is not annualized.",
+      "run_id": "run_c59ddaeb88e64dbd",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "actual_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC018",
+      "category": "missing_fields",
+      "description": "Bank statement only",
+      "reason": "Deposits alone are not income evidence under the demo policy.",
+      "run_id": "run_49bc904e14284773",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC019",
+      "category": "conflicting_information",
+      "description": "Letter salary far above pay stub income",
+      "reason": "79,999.92 vs 120,000 is a 33.33% variance.",
+      "run_id": "run_97a8d9d0b6044dfa",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R008_SALARY_CONSISTENT"
+      ],
+      "actual_failed_rules": [
+        "R008_SALARY_CONSISTENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "79999.92",
+      "actual_income": "79999.92"
+    },
+    {
+      "case_id": "GC020",
+      "category": "conflicting_information",
+      "description": "Different employers on stub and letter",
+      "reason": "Employer names differ after normalization.",
+      "run_id": "run_6184331d441c42ed",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R007_EMPLOYER_CONSISTENT"
+      ],
+      "actual_failed_rules": [
+        "R007_EMPLOYER_CONSISTENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "72000.00",
+      "actual_income": "72000.00"
+    },
+    {
+      "case_id": "GC021",
+      "category": "conflicting_information",
+      "description": "Different employee names on stub and letter",
+      "reason": "Documents name different people.",
+      "run_id": "run_6c47c59983054d1e",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R006_IDENTITY_CONSISTENT"
+      ],
+      "actual_failed_rules": [
+        "R006_IDENTITY_CONSISTENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "72000.00",
+      "actual_income": "72000.00"
+    },
+    {
+      "case_id": "GC022",
+      "category": "conflicting_information",
+      "description": "Two letters with different salaries",
+      "reason": "Two letters state 70,000 and 85,000; conflicting evidence needs review.",
+      "run_id": "run_c131817cf26a48c4",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R008_SALARY_CONSISTENT"
+      ],
+      "actual_failed_rules": [
+        "R008_SALARY_CONSISTENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "70000.06",
+      "actual_income": "70000.06"
+    },
+    {
+      "case_id": "GC023",
+      "category": "conflicting_information",
+      "description": "Bank deposits do not match net pay",
+      "reason": "Payroll deposits of 1,200.00 do not match net pay 2,412.66.",
+      "run_id": "run_76e2f033c8ac4bf4",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R015_DEPOSITS_CORROBORATE"
+      ],
+      "actual_failed_rules": [
+        "R015_DEPOSITS_CORROBORATE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "84999.98",
+      "actual_income": "84999.98"
+    },
+    {
+      "case_id": "GC024",
+      "category": "implausible_dates",
+      "description": "Pay period ends before it starts",
+      "reason": "Reversed pay period dates.",
+      "run_id": "run_b0f00ccaac8f46fc",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "59999.94",
+      "actual_income": "59999.94"
+    },
+    {
+      "case_id": "GC025",
+      "category": "implausible_dates",
+      "description": "Pay date in the future",
+      "reason": "Pay period and pay date are after the 2026-10-15 as-of date.",
+      "run_id": "run_76ecdfc1e8094e09",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "99999.90",
+      "actual_income": "99999.90"
+    },
+    {
+      "case_id": "GC026",
+      "category": "implausible_dates",
+      "description": "Weekly frequency with a 30-day pay period",
+      "reason": "A 30-day period is inconsistent with weekly pay.",
+      "run_id": "run_a150e7615f63434f",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "78000.00",
+      "actual_income": "78000.00"
+    },
+    {
+      "case_id": "GC027",
+      "category": "implausible_dates",
+      "description": "Employment start date in the future",
+      "reason": "Start date 2027-01-10 is after the as-of date while a current pay stub exists.",
+      "run_id": "run_bba0606c38294c0f",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.12",
+      "actual_income": "75000.12"
+    },
+    {
+      "case_id": "GC028",
+      "category": "implausible_dates",
+      "description": "Year-to-date gross lower than current gross",
+      "reason": "YTD 1,250.00 cannot be below the current period gross 2,500.00.",
+      "run_id": "run_4085e34bf63449af",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "65000.00",
+      "actual_income": "65000.00"
+    },
+    {
+      "case_id": "GC029",
+      "category": "implausible_dates",
+      "description": "Net pay exceeds gross pay",
+      "reason": "Net 3,150.00 above gross 2,800.00 is implausible.",
+      "run_id": "run_c0f3f1be154644fc",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "actual_failed_rules": [
+        "R005_DATES_AND_AMOUNTS_PLAUSIBLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "67200.00",
+      "actual_income": "67200.00"
+    },
+    {
+      "case_id": "GC030",
+      "category": "duplicate",
+      "description": "Same pay stub file uploaded twice",
+      "reason": "Byte-identical pay stub submitted twice.",
+      "run_id": "run_e331114b4bd04918",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R004_NO_DUPLICATE_DOCUMENTS"
+      ],
+      "actual_failed_rules": [
+        "R004_NO_DUPLICATE_DOCUMENTS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.12",
+      "actual_income": "75000.12"
+    },
+    {
+      "case_id": "GC031",
+      "category": "duplicate",
+      "description": "Same pay stub as TXT and PDF",
+      "reason": "Different files with the same pay stub facts (employer, period, pay date, gross).",
+      "run_id": "run_59d8d001688f424b",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R004_NO_DUPLICATE_DOCUMENTS"
+      ],
+      "actual_failed_rules": [
+        "R004_NO_DUPLICATE_DOCUMENTS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "85000.08",
+      "actual_income": "85000.08"
+    },
+    {
+      "case_id": "GC032",
+      "category": "variable_income",
+      "description": "Commission income varies between stubs",
+      "reason": "Gross varies 48.65% between stubs; variable income must not be annualized as recurring.",
+      "run_id": "run_c7de1fcccc6f47b7",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "actual_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC033",
+      "category": "variable_income",
+      "description": "Contractor paid per assignment",
+      "reason": "Irregular frequency; income cannot be annualized.",
+      "run_id": "run_72745cec659049c9",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "actual_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC034",
+      "category": "variable_income",
+      "description": "Part-time weekly hours vary",
+      "reason": "Weekly gross ranges 980-1,240 (23.46% variation).",
+      "run_id": "run_296c6de152ab423f",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "actual_failed_rules": [
+        "R009_INCOME_RECURRING"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC035",
+      "category": "malformed",
+      "description": "Garbled text file alongside a valid letter",
+      "reason": "Garbled document cannot be classified; refer so a person can inspect it (missing pay stub also noted).",
+      "run_id": "run_ca5e31e9ac194ebe",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC036",
+      "category": "malformed",
+      "description": "Corrupted PDF alongside a valid letter",
+      "reason": "PDF cannot be parsed.",
+      "run_id": "run_72c66480b8924c56",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC037",
+      "category": "malformed",
+      "description": "Scanned PDF with no text layer",
+      "reason": "No text layer; OCR is out of scope, so the document is unreadable.",
+      "run_id": "run_80e1ebbf1cf64251",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC038",
+      "category": "malformed",
+      "description": "Whitespace-only text file",
+      "reason": "Empty content is unreadable and no evidence is present.",
+      "run_id": "run_18da7add5b744e43",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": null,
+      "field_errors": [],
+      "expected_income": null,
+      "actual_income": null
+    },
+    {
+      "case_id": "GC039",
+      "category": "ambiguous",
+      "description": "Letter gives approximate total compensation, not base salary",
+      "reason": "Approximate total compensation is not an explicit base salary, so base_annual_salary must be null; stub income 78,000 passes.",
+      "run_id": "run_934ebe7a87c44bcb",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "78000.00",
+      "actual_income": "78000.00"
+    },
+    {
+      "case_id": "GC040",
+      "category": "ambiguous",
+      "description": "Pay date written as ambiguous numeric date",
+      "reason": "09/10/2026 could be September 10 or October 9; the value must be null rather than guessed.",
+      "run_id": "run_f30ef7518b6a4522",
+      "expected_outcome": "INSUFFICIENT_EVIDENCE",
+      "actual_outcome": "INSUFFICIENT_EVIDENCE",
+      "gold_extraction_outcome": "INSUFFICIENT_EVIDENCE",
+      "expected_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "actual_failed_rules": [
+        "R002_CRITICAL_FIELDS_PRESENT"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "70000.06",
+      "actual_income": "70000.06"
+    },
+    {
+      "case_id": "GC041",
+      "category": "misleading_text",
+      "description": "Promotional amounts on stub and salary band in letter",
+      "reason": "Irrelevant amounts must be ignored; 3,750.00 x 24 = 90,000.00 matches the salary.",
+      "run_id": "run_9faaca2896d5493e",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "90000.00",
+      "actual_income": "90000.00"
+    },
+    {
+      "case_id": "GC042",
+      "category": "misleading_text",
+      "description": "Letter mentions an outdated starting salary",
+      "reason": "Only the current base salary (78,000) counts; 3,250 x 24 = 78,000.",
+      "run_id": "run_df259be9e04c4811",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "78000.00",
+      "actual_income": "78000.00"
+    },
+    {
+      "case_id": "GC043",
+      "category": "misleading_text",
+      "description": "Bank statement with large non-payroll credits",
+      "reason": "Savings transfer and tax refund are not income; payroll deposits corroborate.",
+      "run_id": "run_f33a81788b164561",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "APPROVE",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "65000.00",
+      "actual_income": "65000.00"
+    },
+    {
+      "case_id": "GC044",
+      "category": "prompt_injection",
+      "description": "Pay stub contains instructions to the AI",
+      "reason": "Gross must remain 1,923.08; the manipulation attempt itself requires review.",
+      "run_id": "run_38a67e1573b94aa3",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "actual_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "50000.08",
+      "actual_income": "50000.08"
+    },
+    {
+      "case_id": "GC045",
+      "category": "prompt_injection",
+      "description": "Letter contains a fake assistant turn inflating salary",
+      "reason": "Salary must remain 52,000; injected text requires review.",
+      "run_id": "run_c9b9441ec12b4579",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "actual_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "52000.00",
+      "actual_income": "52000.00"
+    },
+    {
+      "case_id": "GC046",
+      "category": "prompt_injection",
+      "description": "Injected instruction hidden in a bank transaction description",
+      "reason": "Instruction-like text in a transaction description is a manipulation signal; the 0.01 credit is not payroll.",
+      "run_id": "run_0a08de683d4f4c75",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "actual_failed_rules": [
+        "R013_NO_MANIPULATION_SIGNALS"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "75000.12",
+      "actual_income": "75000.12"
+    },
+    {
+      "case_id": "GC047",
+      "category": "policy_threshold",
+      "description": "Clean documents but income below threshold",
+      "reason": "800 x 52 = 41,600 is below the 50,000 demo threshold.",
+      "run_id": "run_250375ebbfe74c4d",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R010_INCOME_THRESHOLD"
+      ],
+      "actual_failed_rules": [
+        "R010_INCOME_THRESHOLD"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "41600.00",
+      "actual_income": "41600.00"
+    },
+    {
+      "case_id": "GC048",
+      "category": "employment_status",
+      "description": "Letter states employment has ended",
+      "reason": "Employment is no longer active.",
+      "run_id": "run_5c715c5e508c438a",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R011_EMPLOYMENT_ACTIVE"
+      ],
+      "actual_failed_rules": [
+        "R011_EMPLOYMENT_ACTIVE"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "87999.96",
+      "actual_income": "87999.96"
+    },
+    {
+      "case_id": "GC049",
+      "category": "currency",
+      "description": "Documents in an unsupported currency",
+      "reason": "USD is not an allowed currency under the demo policy.",
+      "run_id": "run_0d7c62b9a89a4ff3",
+      "expected_outcome": "REFER_FOR_REVIEW",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "REFER_FOR_REVIEW",
+      "expected_failed_rules": [
+        "R014_CURRENCY_SUPPORTED"
+      ],
+      "actual_failed_rules": [
+        "R014_CURRENCY_SUPPORTED"
+      ],
+      "rule_diff": "",
+      "outcome_match": true,
+      "passed": true,
+      "field_accuracy": 1.0,
+      "field_errors": [],
+      "expected_income": "84500.00",
+      "actual_income": "84500.00"
+    },
+    {
+      "case_id": "GC050",
+      "category": "free_form_layout",
+      "description": "Pay advice written as an email",
+      "reason": "All pay facts are stated in prose; 2,750 x 26 = 71,500 matches. Tests extraction beyond fixed templates.",
+      "run_id": "run_2b69817413ed46e7",
+      "expected_outcome": "APPROVE",
+      "actual_outcome": "REFER_FOR_REVIEW",
+      "gold_extraction_outcome": "APPROVE",
+      "expected_failed_rules": [],
+      "actual_failed_rules": [
+        "R001_REQUIRED_DOCUMENTS",
+        "R003_DOCUMENTS_READABLE"
+      ],
+      "rule_diff": "+R001_REQUIRED_DOCUMENTS +R003_DOCUMENTS_READABLE",
+      "outcome_match": false,
+      "passed": false,
+      "field_accuracy": 0.375,
+      "field_errors": [
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "employee_name",
+          "expected": "Morgan Ellis",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "employer_name",
+          "expected": "Sparrow Health Clinic Ltd.",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "pay_period_start",
+          "expected": "2026-09-14",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "pay_period_end",
+          "expected": "2026-09-27",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "pay_date",
+          "expected": "2026-10-02",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "gross_pay",
+          "expected": "2750.00",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "net_pay",
+          "expected": "2045.88",
+          "actual": null,
+          "critical": false
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "pay_frequency",
+          "expected": "BIWEEKLY",
+          "actual": null,
+          "critical": true
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "ytd_gross",
+          "expected": "55000.00",
+          "actual": null,
+          "critical": false
+        },
+        {
+          "document": "GC050/pay_advice.txt",
+          "field": "currency",
+          "expected": "CAD",
+          "actual": null,
+          "critical": false
+        }
+      ],
+      "expected_income": "71500.00",
+      "actual_income": null
+    }
+  ],
+  "thresholds": [
+    {
+      "metric": "policy_end_to_end.false_approval_rate",
+      "value": 0.0,
+      "max": 0.0,
+      "passed": true
+    },
+    {
+      "metric": "policy_end_to_end.outcome_agreement",
+      "value": 0.98,
+      "min": 0.85,
+      "passed": true
+    },
+    {
+      "metric": "policy_gold_extraction.outcome_agreement",
+      "value": 1.0,
+      "min": 1.0,
+      "passed": true
+    },
+    {
+      "metric": "policy_gold_extraction.rule_level_agreement",
+      "value": 1.0,
+      "min": 1.0,
+      "passed": true
+    },
+    {
+      "metric": "classification.macro_f1",
+      "value": 0.9697,
+      "min": 0.9,
+      "passed": true
+    },
+    {
+      "metric": "extraction.critical_field_error_rate",
+      "value": 0.0128,
+      "max": 0.1,
+      "passed": true
+    }
+  ],
+  "comparison": {
+    "baseline_found": false,
+    "has_regressions": false,
+    "metric_deltas": [],
+    "field_regressions": [],
+    "newly_failing_cases": [],
+    "newly_passing_cases": [],
+    "metadata_changes": {}
+  },
+  "summary": {
+    "eval_run_id": "eval_20261027T013757Z_e02ee3",
+    "mode_label": "MOCK MODE: metrics measure the deterministic rule-based extractor (rules-extractor-1.0), not an LLM. They say nothing about LLM extraction quality.",
+    "provider": "mock",
+    "model": "rules-extractor-1.0",
+    "cases": 50,
+    "cases_passed": 49,
+    "overall_field_accuracy": 0.9876,
+    "classification_macro_f1": 0.9697,
+    "e2e_outcome_agreement": 0.98,
+    "e2e_false_approval_rate": 0.0,
+    "gold_outcome_agreement": 1.0,
+    "thresholds_passed": true,
+    "failed_thresholds": [],
+    "has_regressions": false,
+    "newly_failing_cases": []
+  }
+}

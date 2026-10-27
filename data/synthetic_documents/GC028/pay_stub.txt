@@ -1,0 +1,17 @@
+MERIDIAN TEXTILES LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Meridian Textiles Ltd.
+Employee: Aria Santos
+Employee ID: E-375D5
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,500.00
+Deductions: $600.00
+Net Pay: $1,900.00
+YTD Gross: $1,250.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

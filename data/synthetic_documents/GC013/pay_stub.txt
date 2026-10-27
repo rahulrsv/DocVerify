@@ -1,0 +1,15 @@
+GRANITE PEAK CONSTRUCTION INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Granite Peak Construction Inc.
+Employee: Daniel Kowalski
+Employee ID: E-7852A
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Net Pay: $1,980.33
+YTD Gross: $52,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

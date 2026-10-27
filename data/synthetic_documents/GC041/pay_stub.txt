@@ -1,0 +1,15 @@
+=== PAY STATEMENT ===
+Company: Starling Financial Technologies Inc.
+Pay to: Julian Price
+Period: Sep 16, 2026 - Sep 30, 2026
+Paid on: September 30, 2026
+Frequency: Semi-monthly
+
+Description               Current   Year-to-Date
+Gross Earnings           3,750.00      67,500.00
+Net Pay                  2,780.00      50,040.00
+
+All amounts in CAD
+Synthetic document for engineering demonstration only.
+
+Refer a friend and earn up to $5,000.00 in bonuses!

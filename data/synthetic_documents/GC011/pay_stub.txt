@@ -1,0 +1,17 @@
+KESTREL AVIATION SERVICES LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Kestrel Aviation Services Ltd.
+Employee: Oliver Grant
+Employee ID: E-35866
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,500.00
+Deductions: $610.00
+Net Pay: $1,890.00
+YTD Gross: $50,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

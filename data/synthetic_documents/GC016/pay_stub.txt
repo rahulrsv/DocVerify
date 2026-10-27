@@ -1,0 +1,17 @@
+COASTAL PHARMA LTD.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Coastal Pharma Ltd.
+Employee: Emma Johansson
+Employee ID: E-E5C48
+Pay Period: 2026-05-01 to 2026-05-31
+Pay Date: 2026-05-29
+Pay Frequency: Monthly
+Currency: CAD
+
+Gross Pay: $6,250.00
+Deductions: $1,659.90
+Net Pay: $4,590.10
+YTD Gross: $31,250.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

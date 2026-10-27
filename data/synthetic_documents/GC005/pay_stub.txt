@@ -1,0 +1,17 @@
+LAKESHORE HEALTH PARTNERS
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Lakeshore Health Partners
+Employee: Ethan Brightwater
+Employee ID: E-5C1E3
+Pay Period: 2026-09-14 to 2026-09-27
+Pay Date: 2026-10-02
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,692.31
+Deductions: $681.86
+Net Pay: $2,010.45
+YTD Gross: $53,846.20
+--------------------------------------------
+Synthetic document for engineering demonstration only.

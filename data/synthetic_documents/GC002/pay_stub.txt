@@ -1,0 +1,13 @@
+=== PAY STATEMENT ===
+Company: Maple Ridge Software Ltd.
+Pay to: Priya Natarajan
+Period: Sep 16, 2026 - Sep 30, 2026
+Paid on: September 30, 2026
+Frequency: Semi-monthly
+
+Description               Current   Year-to-Date
+Gross Earnings           4,166.67      75,000.06
+Net Pay                  3,050.12      54,902.16
+
+All amounts in CAD
+Synthetic document for engineering demonstration only.

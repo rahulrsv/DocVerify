@@ -1,0 +1,17 @@
+LIGHTHOUSE MEDIA INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Lighthouse Media Inc.
+Employee: Maya Rodriguez
+Employee ID: E-33675
+Pay Period: 2026-09-21 to 2026-10-04
+Pay Date: 09/10/2026
+Pay Frequency: Biweekly
+Currency: CAD
+
+Gross Pay: $2,692.31
+Deductions: $687.31
+Net Pay: $2,005.00
+YTD Gross: $53,846.20
+--------------------------------------------
+Synthetic document for engineering demonstration only.

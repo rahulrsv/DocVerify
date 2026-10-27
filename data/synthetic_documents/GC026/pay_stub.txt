@@ -1,0 +1,17 @@
+ORCHID DESIGN STUDIO INC.
+EARNINGS STATEMENT
+--------------------------------------------
+Employer: Orchid Design Studio Inc.
+Employee: Lily Zhang
+Employee ID: E-1478C
+Pay Period: 2026-09-01 to 2026-09-30
+Pay Date: 2026-10-02
+Pay Frequency: Weekly
+Currency: CAD
+
+Gross Pay: $1,500.00
+Deductions: $350.00
+Net Pay: $1,150.00
+YTD Gross: $60,000.00
+--------------------------------------------
+Synthetic document for engineering demonstration only.

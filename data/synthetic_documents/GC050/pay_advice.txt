@@ -1,0 +1,14 @@
+From: payroll@sparrowhealth.example
+Subject: Your pay advice
+
+Hi Morgan Ellis,
+
+Sparrow Health Clinic Ltd. has issued your pay for the period September 14,
+2026 through September 27, 2026. Payment was made on October 2, 2026. You are
+paid every two weeks.
+
+Gross amount: 2,750.00 CAD
+Net amount: 2,045.88 CAD
+Year-to-date gross: 55,000.00 CAD
+
+Synthetic document for engineering demonstration only.
