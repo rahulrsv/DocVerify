@@ -21,7 +21,7 @@ upload → text extraction → injection scan → classification + structured ex
 
 ## Quick start (no API key needed)
 
-Requires Python 3.12+.
+Requires Python 3.12 or 3.13 (the versions tested). Newer versions may fail to install: on 3.15, PyMuPDF's onnxruntime dependency has no wheels yet.
 
 ```bash
 cd income-lens-ai
