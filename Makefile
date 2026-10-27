@@ -21,10 +21,10 @@ data:
 	$(PY) scripts/generate_golden_dataset.py
 
 api:
-	$(PY) -m uvicorn app.main:create_app --factory --reload --port 8000
+	$(PY) -m uvicorn app.main:create_app --factory --reload --port 8100
 
 dashboard:
-	$(PY) -m streamlit run dashboard/streamlit_app.py
+	API_URL=http://localhost:8100 $(PY) -m streamlit run dashboard/streamlit_app.py --server.port 8502
 
 up:
 	docker compose up --build

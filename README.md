@@ -30,15 +30,15 @@ pip install -r requirements-dev.txt
 
 make test        # 140 tests, offline (1 live-LLM test skipped without a key)
 make eval        # golden-set evaluation in mock mode, compared to the stored baseline
-make api         # FastAPI on http://localhost:8000  (docs: /docs)
-make dashboard   # Streamlit on http://localhost:8501 (in a second terminal)
+make api         # FastAPI on http://localhost:8100  (docs: /docs)
+make dashboard   # Streamlit on http://localhost:8502 (in a second terminal)
 ```
 
 With Docker:
 
 ```bash
 cp .env.example .env       # optional; defaults to the mock provider
-docker compose up --build  # api :8000, dashboard :8501
+docker compose up --build  # api :8100, dashboard :8502
 docker compose run --rm tests
 ```
 
@@ -66,7 +66,7 @@ make eval-llm                        # golden-set evaluation with the real model
 curl -s -F files=@data/synthetic_documents/GC019/pay_stub.txt \
         -F files=@data/synthetic_documents/GC019/employment_letter.txt \
         -F case_id=demo-1 -F as_of_date=2026-10-15 \
-        http://localhost:8000/documents/process | python -m json.tool | less
+        http://localhost:8100/documents/process | python -m json.tool | less
 ```
 
 ## Repository layout
