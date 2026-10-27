@@ -23,6 +23,7 @@ from app.evals.report import render_markdown
 from app.extraction.base import ExtractionProvider, ProviderError
 from app.extraction.factory import build_provider
 from app.extraction.normalize import to_iso
+from app.models.case import RuleResult
 from app.models.common import SCHEMA_VERSION, Outcome, RuleOutcome
 from app.policies.config import PolicyConfig, load_policy
 from app.policies.engine import decide, evaluate_rules
@@ -52,7 +53,7 @@ def _git_commit() -> str | None:
         return None
 
 
-def _gold_policy_case(case: GoldenCase, policy: PolicyConfig) -> tuple[str, list[str]]:
+def gold_rule_results(case: GoldenCase, policy: PolicyConfig) -> list[RuleResult]:
     """Run calculations + policy on labeled extractions to isolate rule logic from extraction error."""
     records, extractions = [], []
     for index, doc in enumerate(case.documents):
@@ -62,7 +63,11 @@ def _gold_policy_case(case: GoldenCase, policy: PolicyConfig) -> tuple[str, list
         records.append(loaded.record)
         extractions.append(gold_extraction(loaded.record.document_id, doc.expected))
     calcs = calculate_case(records, extractions, case.as_of_date, policy.calculation_settings())
-    results = evaluate_rules(PolicyContext(records, extractions, calcs, case.as_of_date), policy)
+    return evaluate_rules(PolicyContext(records, extractions, calcs, case.as_of_date), policy)
+
+
+def _gold_policy_case(case: GoldenCase, policy: PolicyConfig) -> tuple[str, list[str]]:
+    results = gold_rule_results(case, policy)
     return decide(results, policy).outcome.value, sorted(r.rule_id for r in results if r.outcome is RuleOutcome.FAIL)
 
 

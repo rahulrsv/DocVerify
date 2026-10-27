@@ -111,3 +111,27 @@ def test_pdf_case(processor):
     result = processor.process_case("GC006", inputs("GC006", "pay_stub_1.pdf", "pay_stub_2.pdf", "employment_letter.pdf"), as_of_date=AS_OF)
     assert result.decision.outcome is Outcome.APPROVE
     assert result.calculations.gross_pay_variation_pct.value == Decimal("0.00")
+
+
+def test_failed_rules_cite_handbook_without_changing_the_decision(audit, policy, tmp_path):
+    import dataclasses
+
+    from app.audit.store import AuditStore
+    from app.core.config import Settings
+    from app.extraction.mock_provider import RuleBasedExtractionProvider
+    from app.retrieval.factory import build_retriever
+
+    retriever = build_retriever(dataclasses.replace(Settings(), retrieval_backend="bm25"), policy)
+    docs = inputs("GC016", "pay_stub.txt", "employment_letter.txt")
+    with_cites = CaseProcessor(RuleBasedExtractionProvider(), policy, audit, retriever=retriever).process_case("GC016", docs, as_of_date=AS_OF)
+    plain = CaseProcessor(RuleBasedExtractionProvider(), policy, AuditStore(tmp_path / "plain.db")).process_case("GC016", docs, as_of_date=AS_OF)
+
+    assert with_cites.decision == plain.decision
+    assert [(r.rule_id, r.outcome) for r in with_cites.rule_results] == [(r.rule_id, r.outcome) for r in plain.rule_results]
+    stale = next(r for r in with_cites.rule_results if r.rule_id == "R012_DOCUMENT_RECENCY")
+    assert stale.outcome is RuleOutcome.FAIL and stale.citation.passage_id == "R012_DOCUMENT_RECENCY"
+    assert all(r.citation is None for r in with_cites.rule_results if r.outcome is not RuleOutcome.FAIL)
+    assert with_cites.metadata.retrieval_version == "demo-handbook-1.0/bm25" and plain.metadata.retrieval_version is None
+    assert with_cites.input_fingerprint != plain.input_fingerprint
+    event = next(e for e in audit.events_for_case("GC016") if e["event_type"] == "POLICY_CITATIONS_ATTACHED")
+    assert event["payload"]["citations"] == {"R012_DOCUMENT_RECENCY": "R012_DOCUMENT_RECENCY"}

@@ -1,4 +1,4 @@
-.PHONY: install test eval baseline eval-llm data api dashboard up down clean
+.PHONY: install test eval eval-retrieval baseline eval-llm data api dashboard up down clean
 
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
@@ -10,6 +10,9 @@ test:
 
 eval:
 	$(PY) -m app.evals.run --dataset data/golden --fail-on-regression
+
+eval-retrieval:
+	$(PY) -m app.evals.retrieval --backend $(or $(BACKEND),bm25) --fail-under-thresholds
 
 baseline:
 	$(PY) -m app.evals.run --dataset data/golden --update-baseline

@@ -2,7 +2,7 @@
 
 Document upload -> text extraction -> injection scan -> classification + structured
 extraction (provider) -> normalization/grounding/validation -> deterministic
-calculations -> policy evaluation -> audit record.
+calculations -> policy evaluation -> handbook citations for failed rules -> audit record.
 """
 
 import hashlib
@@ -25,6 +25,7 @@ from app.models.extraction import DocumentExtraction, ValidationIssue
 from app.policies.config import PolicyConfig
 from app.policies.engine import decide, evaluate_rules
 from app.policies.rules import PolicyContext
+from app.retrieval.retriever import PolicyRetriever
 
 log = logging.getLogger(__name__)
 
@@ -44,10 +45,12 @@ class CaseProcessor:
         *,
         max_pdf_pages: int = 20,
         max_text_chars: int = 50_000,
+        retriever: PolicyRetriever | None = None,
     ) -> None:
         self.provider = provider
         self.policy = policy
         self.audit = audit
+        self.retriever = retriever
         self._max_pages = max_pdf_pages
         self._max_chars = max_text_chars
 
@@ -61,6 +64,7 @@ class CaseProcessor:
             "prompt_version": self.provider.prompt_version,
             "schema_version": SCHEMA_VERSION,
             "policy_version": self.policy.policy_version,
+            "retrieval_version": self.retriever.version if self.retriever else None,
         }
         return hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()
 
@@ -138,6 +142,15 @@ class CaseProcessor:
             {"policy_version": self.policy.policy_version, "rules": {r.rule_id: r.outcome.value for r in rule_results}},
             run_id,
         )
+        if self.retriever:
+            # Citations are attached after the decision so retrieval can never influence it.
+            rule_results = self.retriever.annotate(rule_results)
+            self.audit.append_event(
+                case_id,
+                "POLICY_CITATIONS_ATTACHED",
+                {"retrieval_version": self.retriever.version, "citations": {r.rule_id: r.citation.passage_id for r in rule_results if r.citation}},
+                run_id,
+            )
 
         result = CaseResult(
             run_id=run_id,
@@ -156,6 +169,7 @@ class CaseProcessor:
                 prompt_version=self.provider.prompt_version,
                 schema_version=SCHEMA_VERSION,
                 policy_version=self.policy.policy_version,
+                retrieval_version=self.retriever.version if self.retriever else None,
                 extraction_attempts=attempts,
                 errors=errors,
             ),

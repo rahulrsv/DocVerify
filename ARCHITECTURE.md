@@ -19,6 +19,9 @@ upload ----> | loader -> safety scan -> provider.extract -> normalize/ground   |
              |                             |                                  |
              |                   policy engine (JSON config)                  |
              |                   -> RuleResult[] -> Decision                  |
+             |                             |                                  |
+             |                   retrieval: failed rule -> handbook passage   |
+             |                   (citation only, after the decision)          |
              +-----------------------------|----------------------------------+
                                            v
                        SQLite: processing_runs + append-only audit_events
@@ -38,6 +41,7 @@ upload ----> | loader -> safety scan -> provider.extract -> normalize/ground   |
 | `app/extraction/normalize.py` | Converts the raw wire schema into the canonical schema, grounds every value in the source text and records validation issues. Shared by all providers. |
 | `app/calculations/income.py` | Annualization, consistency checks, duplicates, date plausibility, deposit corroboration. Emits facts, never decisions. |
 | `app/policies/` | Rule functions, JSON policy config, aggregation into an outcome. |
+| `app/retrieval/` | Policy handbook parser (one passage per section, thresholds filled from the policy JSON), BM25 scorer, optional embedding scorer behind an `Encoder` protocol, and the retriever that attaches citations to failed rules. |
 | `app/audit/store.py` | SQLite persistence of runs and hash-chained append-only events. |
 | `app/core/pipeline.py` | Orchestrates one case end to end and writes the audit trail. |
 | `app/api/routes.py` | Thin HTTP handlers. |
@@ -105,6 +109,19 @@ case. Silent rejection would leave no trace.
 **Synchronous processing.** Simple and enough for a demo. With a real LLM a multi-document
 case takes several seconds, and `POST /evals/run` with `provider=openai` blocks for minutes.
 A job queue is listed under next improvements.
+
+**Retrieval cites policy; it does not decide.** Failed rules get a citation from the
+policy handbook so a reviewer sees the written rationale next to the computed result. This
+is retrieval-augmented *explanation*, not generation: no model writes the explanation, and
+the passage is returned verbatim. The query is the rule's title and explanation text, not
+its ID, so the citation is a real retrieval result and `matches_rule` records whether it
+found the rule's own section. Citations are attached after `decide()` runs, and a test
+asserts the decision is identical with retrieval on or off. BM25 is the default because it
+is deterministic, needs no download and is good enough on an 18-passage corpus (see the
+retrieval eval). Dense embeddings sit behind the same `Scorer` interface for paraphrase-heavy
+queries; sentence-transformers runs locally, so there is still no per-query cost. The
+handbook version and backend are part of the run fingerprint, so changing either produces a
+new run instead of an idempotent replay with stale citations.
 
 ## Audit design (MVP, not compliant or tamper-proof)
 

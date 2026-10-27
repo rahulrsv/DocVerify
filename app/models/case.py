@@ -66,6 +66,17 @@ class CaseCalculations(BaseModel):
         return [f for f in self.findings if f.code in codes]
 
 
+class PolicyCitation(BaseModel):
+    """Handbook passage retrieved for a failed rule. Explanatory only; it never affects the outcome."""
+
+    passage_id: str
+    title: str
+    excerpt: str
+    score: float
+    retriever: str = Field(description="Handbook version and retrieval backend, e.g. demo-handbook-1.0/bm25.")
+    matches_rule: bool = Field(description="True when the retrieved passage is the one written for this rule.")
+
+
 class RuleResult(BaseModel):
     rule_id: str
     rule_version: str
@@ -75,6 +86,7 @@ class RuleResult(BaseModel):
     severity: Severity
     explanation: str
     evidence: list[dict[str, Any]] = Field(default_factory=list)
+    citation: PolicyCitation | None = None
 
 
 class Decision(BaseModel):
@@ -91,6 +103,7 @@ class ProcessingMetadata(BaseModel):
     prompt_version: str
     schema_version: str
     policy_version: str
+    retrieval_version: str | None = None
     extraction_attempts: dict[str, int] = Field(default_factory=dict)
     errors: list[str] = Field(default_factory=list)
 

@@ -24,6 +24,12 @@ class Settings:
     policy_path: Path = field(
         default_factory=lambda: Path(_env("DOCVERIFY_POLICY_PATH", str(PROJECT_ROOT / "data" / "policies" / "demo_policy_v1.json")))
     )
+    # Policy-text retrieval for rule citations: "bm25" (offline default), "embedding" (local model) or "none".
+    retrieval_backend: str = field(default_factory=lambda: _env("DOCVERIFY_RETRIEVAL_BACKEND", "bm25"))
+    handbook_path: Path = field(
+        default_factory=lambda: Path(_env("DOCVERIFY_HANDBOOK_PATH", str(PROJECT_ROOT / "data" / "policies" / "handbook" / "demo_policy_handbook_v1.md")))
+    )
+    embedding_model: str = field(default_factory=lambda: _env("DOCVERIFY_EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"))
     golden_dir: Path = field(default_factory=lambda: Path(_env("DOCVERIFY_GOLDEN_DIR", str(PROJECT_ROOT / "data" / "golden"))))
     reports_dir: Path = field(default_factory=lambda: Path(_env("DOCVERIFY_REPORTS_DIR", str(PROJECT_ROOT / "reports"))))
     max_upload_bytes: int = field(default_factory=lambda: int(_env("DOCVERIFY_MAX_UPLOAD_BYTES", str(5 * 1024 * 1024))))
