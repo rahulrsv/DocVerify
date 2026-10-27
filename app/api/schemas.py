@@ -14,6 +14,22 @@ class HealthResponse(BaseModel):
     prompt_version: str
     policy_version: str
     schema_version: str
+    retrieval_version: str | None = None
+
+
+class PolicyPassage(BaseModel):
+    passage_id: str
+    rule_id: str | None
+    title: str
+    text: str
+    score: float
+    rank: int
+
+
+class PolicySearchResponse(BaseModel):
+    query: str
+    retrieval_version: str
+    results: list[PolicyPassage]
 
 
 class AuditResponse(BaseModel):

@@ -80,3 +80,25 @@ def test_evals_endpoints(client):
 
 def test_openai_eval_without_key_is_503(client):
     assert client.post("/evals/run", json={"provider": "openai"}).status_code == 503
+
+
+def test_policy_search(client):
+    assert client.get("/health").json()["retrieval_version"] == "demo-handbook-1.0/bm25"
+    body = client.get("/policy/search", params={"q": "What is the minimum income to qualify?", "k": 2}).json()
+    assert body["retrieval_version"] == "demo-handbook-1.0/bm25"
+    assert [r["rank"] for r in body["results"]] == [1, 2]
+    top = body["results"][0]
+    assert top["passage_id"] == "R010_INCOME_THRESHOLD" and "50000.00 CAD" in top["text"]
+    assert client.get("/policy/search", params={"q": "x"}).status_code == 422
+
+
+def test_policy_search_disabled(settings):
+    import dataclasses
+
+    from fastapi.testclient import TestClient
+
+    from app.main import create_app
+
+    client = TestClient(create_app(dataclasses.replace(settings, retrieval_backend="none")))
+    assert client.get("/policy/search", params={"q": "minimum income"}).status_code == 503
+    assert client.get("/health").json()["retrieval_version"] is None

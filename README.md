@@ -17,7 +17,7 @@ hand-labeled golden dataset.
 ```
 upload → text extraction → injection scan → classification + structured extraction (LLM/mock)
        → normalization + grounding + validation → deterministic calculations
-       → policy rules → decision → SQLite audit trail
+       → policy rules → decision → handbook citations (retrieval) → SQLite audit trail
 ```
 
 ## Quick start (no API key needed)
@@ -29,8 +29,9 @@ cd docverify
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 
-make test        # 144 tests, offline (1 live-LLM test skipped without a key)
+make test        # 159 tests, offline (1 live-LLM test skipped without a key)
 make eval        # golden-set evaluation in mock mode, compared to the stored baseline
+make eval-retrieval  # policy-text retrieval eval (BM25, offline)
 make api         # FastAPI on http://localhost:8100  (docs: /docs)
 make dashboard   # Streamlit on http://localhost:8502 (in a second terminal)
 ```
@@ -57,6 +58,7 @@ make eval-llm                        # golden-set evaluation with the real model
 |---|---|---|
 | GET | `/health` | Health plus active provider, model, prompt, schema and policy versions |
 | POST | `/documents/process` | Multipart: `files` (1–10 PDF/TXT, ≤5 MB each), optional `case_id`, `as_of_date`, `force`. 201 for a new run, 200 for an idempotent replay. 400/413/415/422 on invalid uploads. |
+| GET | `/policy/search?q=...&k=3` | Look up policy handbook passages for a free-text question (BM25 by default). 503 when retrieval is disabled. |
 | GET | `/cases/{case_id}` | Latest run: extractions with evidence, validation issues, derived values, rule results, decision |
 | GET | `/cases/{case_id}/audit` | Full history: every run plus chronological audit events and hash-chain verification |
 | GET | `/cases` | Recently processed cases |
@@ -70,6 +72,24 @@ curl -s -F files=@data/synthetic_documents/GC019/pay_stub.txt \
         http://localhost:8100/documents/process | python -m json.tool | less
 ```
 
+### Policy-text retrieval
+
+Each failed rule carries a `citation`: the passage of the policy handbook
+(`data/policies/handbook/demo_policy_handbook_v1.md`) that explains it, found by searching the
+handbook with the rule's title and explanation. Handbook thresholds are filled in from the
+active policy JSON at load time, so cited text always matches the numbers the engine applied.
+Citations are attached **after** the decision and never feed back into rules; the
+`matches_rule` flag makes a wrong citation visible instead of silently plausible.
+
+The default backend is BM25 (pure Python, offline, deterministic). A local embedding backend is
+an optional hook; it costs nothing per query and needs no API key:
+
+```bash
+pip install -r requirements-embeddings.txt
+DOCVERIFY_RETRIEVAL_BACKEND=embedding make api       # all-MiniLM-L6-v2 on CPU
+make eval-retrieval BACKEND=embedding                # compare against BM25
+```
+
 ## Repository layout
 
 ```
@@ -80,14 +100,17 @@ app/
   extraction/     provider protocol, OpenAI structured-output provider, mock provider, prompt, normalization/grounding
   calculations/   deterministic income math and consistency checks
   policies/       rule functions, JSON config loader, engine
+  retrieval/      policy handbook parser, BM25 and optional embedding scorers, rule citations
   audit/          SQLite runs + append-only hash-chained events
-  evals/          golden loader, metrics, baseline comparison, reports, CLI (python -m app.evals.run)
+  evals/          golden loader, metrics, baseline comparison, reports, CLI (python -m app.evals.run),
+                  retrieval eval (python -m app.evals.retrieval)
   models/         Pydantic schemas (wire vs canonical extraction, case result)
   main.py         app factory (uvicorn app.main:create_app --factory)
 dashboard/streamlit_app.py
 data/golden/                 cases.jsonl, manifest.json, eval_thresholds.json
 data/synthetic_documents/    108 synthetic TXT/PDF documents, one folder per case
-data/policies/               demo_policy_v1.json
+data/policies/               demo_policy_v1.json, handbook/demo_policy_handbook_v1.md
+data/retrieval/              hand-written reviewer questions and retrieval thresholds
 scripts/generate_golden_dataset.py
 reports/baselines/mock.json  stored baseline
 tests/unit | integration | regression
@@ -101,13 +124,17 @@ thresholds, current results).
 
 Mock mode measures the **regex extractor, not an LLM**, and every report is labeled that way.
 
-* Tests: 144 passed, 1 skipped (live OpenAI test; no key available).
+* Tests: 159 passed, 1 skipped (live OpenAI test; no key available).
 * Golden set: 49/50 cases pass. Field accuracy 98.8%, critical-field error rate 1.3%,
   classification macro F1 0.970. End-to-end outcome agreement 98.0% with a false approval
   rate of 0.0%. Gold-extraction policy agreement is 100%.
 * The single failure (GC050, a pay advice written as an email) is a real limitation of the
   rule-based extractor. It is kept in the dataset on purpose.
 * No LLM metrics have been measured yet, so none are claimed.
+* Policy retrieval (BM25): rule citations hit@1 97.1% (34 distinct failed-rule explanations);
+  hand-written reviewer questions hit@1 79.2%, hit@3 91.7% (24 questions). BM25 misses
+  paraphrases such as "LLM" vs "language model". The embedding backend has not been measured
+  here (no model download in the build sandbox), so no number is claimed for it.
 
 ## Interview demo script (~8 minutes)
 
@@ -145,6 +172,8 @@ Mock mode measures the **regex extractor, not an LLM**, and every report is labe
 * Single-node SQLite; the audit trail is tamper-evident at best, with no signing or WORM storage.
 * No authentication or authorization on the API. Local demo only.
 * Rules and thresholds are illustrative and not derived from any real lending policy.
+* The policy handbook is 18 short synthetic passages. Retrieval over a corpus this small is a
+  demonstration of the mechanism (grounded citations, versioning, an eval), not of search at scale.
 
 ## Next improvements toward production grade
 

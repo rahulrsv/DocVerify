@@ -10,18 +10,21 @@ from app.core.pipeline import CaseProcessor
 from app.extraction.base import ExtractionProvider
 from app.extraction.factory import build_provider
 from app.policies.config import load_policy
+from app.retrieval.factory import build_retriever
 
 
 def create_app(settings: Settings | None = None, provider: ExtractionProvider | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.log_level)
     audit = AuditStore(settings.db_path)
+    policy = load_policy(settings.policy_path)
     processor = CaseProcessor(
         provider or build_provider(settings),
-        load_policy(settings.policy_path),
+        policy,
         audit,
         max_pdf_pages=settings.max_pdf_pages,
         max_text_chars=settings.max_text_chars,
+        retriever=build_retriever(settings, policy),
     )
     app = FastAPI(
         title="DocVerify",

@@ -1,0 +1,4 @@
+# Optional: local embedding retrieval (DOCVERIFY_RETRIEVAL_BACKEND=embedding).
+# Runs a small model on CPU; no API key or paid calls. Downloads the model (~90 MB) on first use.
+-r requirements.txt
+sentence-transformers==6.2.0

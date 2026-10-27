@@ -154,6 +154,37 @@ Run `eval_20261027T013757Z_e02ee3` (stored as `reports/baselines/mock.json`):
 * End-to-end: outcome agreement 98.0%, rule-level 99.7%, false approval 0.0%, incorrect escalation 4.2%, missing-evidence detection 100%.
 * Gold extractions: 100% on every policy metric.
 
+## Retrieval evaluation (`make eval-retrieval`)
+
+Measures whether policy-text lookup returns the right handbook passage. Offline, runs in
+about a second, separate from the golden-set eval so those metrics are unchanged.
+
+| Query set | Source | Expected passage |
+|---|---|---|
+| `rule_citations` | Every distinct failed-rule explanation from running the 50 golden cases' labeled extractions through the real rules, queried as the pipeline does (title + explanation) | The failed rule's own section |
+| `explanation_only` | Same explanations without the rule title | Same |
+| `reviewer_questions` | 24 hand-written questions in `data/retrieval/reviewer_questions.jsonl`, written before measuring and not tuned afterwards | Hand-labeled section |
+
+Metrics are hit@1, hit@3 and MRR over the top 3. Thresholds for BM25 live in
+`data/retrieval/thresholds.json` and are enforced by a unit test and by
+`--fail-under-thresholds`.
+
+Current BM25 results (`demo-handbook-1.0/bm25`, 18 passages):
+
+| Query set | n | hit@1 | hit@3 | MRR |
+|---|---|---|---|---|
+| rule_citations | 34 | 97.1% | 100.0% | 0.980 |
+| explanation_only | 34 | 79.4% | 100.0% | 0.892 |
+| reviewer_questions | 24 | 79.2% | 91.7% | 0.840 |
+
+The one citation miss is GC035 ("not a supported document type"), where R001's "required
+document type" wins over R003. Reviewer-question misses are vocabulary gaps ("LLM" vs
+"language model", "US dollars" vs "currency"), which is what an embedding backend should
+fix. `make eval-retrieval BACKEND=embedding` runs the same sets against
+all-MiniLM-L6-v2; it has not been run in this repository yet, so no embedding number is
+claimed. Caveat: the handbook and the questions share one author, and 24 questions give
+coarse metrics (one question is about 4 points).
+
 ## LLM mode
 
 `--provider openai` runs the identical harness with `OpenAIExtractionProvider`. No LLM

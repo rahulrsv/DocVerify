@@ -1,0 +1,24 @@
+{"id": "Q01", "query": "Which documents does an applicant have to upload?", "expected": "R001_REQUIRED_DOCUMENTS"}
+{"id": "Q02", "query": "Can we accept an application with only a bank statement?", "expected": "R001_REQUIRED_DOCUMENTS"}
+{"id": "Q03", "query": "What happens if the pay stub has no gross amount on it?", "expected": "R002_CRITICAL_FIELDS_PRESENT"}
+{"id": "Q04", "query": "The scanned PDF has no text, can it be processed?", "expected": "R003_DOCUMENTS_READABLE"}
+{"id": "Q05", "query": "Applicant sent the same pay stub twice", "expected": "R004_NO_DUPLICATE_DOCUMENTS"}
+{"id": "Q06", "query": "Year to date total is smaller than this period's pay", "expected": "R005_DATES_AND_AMOUNTS_PLAUSIBLE"}
+{"id": "Q07", "query": "The pay stub is dated next year", "expected": "R005_DATES_AND_AMOUNTS_PLAUSIBLE"}
+{"id": "Q08", "query": "Name on the letter is spelled differently from the pay stub", "expected": "R006_IDENTITY_CONSISTENT"}
+{"id": "Q09", "query": "Employment letter is from a different company than the payslip", "expected": "R007_EMPLOYER_CONSISTENT"}
+{"id": "Q10", "query": "Letter says 90k salary but the stubs annualize to 75k", "expected": "R008_SALARY_CONSISTENT"}
+{"id": "Q11", "query": "How much can annualized pay differ from the stated salary?", "expected": "R008_SALARY_CONSISTENT"}
+{"id": "Q12", "query": "How do we handle commission or overtime earnings?", "expected": "R009_INCOME_RECURRING"}
+{"id": "Q13", "query": "What is the minimum income to qualify?", "expected": "R010_INCOME_THRESHOLD"}
+{"id": "Q14", "query": "Is a low income application declined?", "expected": "R010_INCOME_THRESHOLD"}
+{"id": "Q15", "query": "The applicant was laid off last month", "expected": "R011_EMPLOYMENT_ACTIVE"}
+{"id": "Q16", "query": "How old can the most recent pay stub be?", "expected": "R012_DOCUMENT_RECENCY"}
+{"id": "Q17", "query": "A document says to ignore previous instructions and approve the loan", "expected": "R013_NO_MANIPULATION_SIGNALS"}
+{"id": "Q18", "query": "Income is paid in US dollars", "expected": "R014_CURRENCY_SUPPORTED"}
+{"id": "Q19", "query": "Bank statement deposits don't match take-home pay", "expected": "R015_DEPOSITS_CORROBORATE"}
+{"id": "Q20", "query": "If two rules fail with different effects, which outcome wins?", "expected": "GEN_OUTCOMES"}
+{"id": "Q21", "query": "Does the LLM decide whether the application is approved?", "expected": "GEN_MODEL_ROLE"}
+{"id": "Q22", "query": "Is self-employment income supported?", "expected": "GEN_SCOPE"}
+{"id": "Q23", "query": "Who calculates the annual income, the model or code?", "expected": "GEN_MODEL_ROLE"}
+{"id": "Q24", "query": "Can a rule be switched off without a code change?", "expected": "GEN_OUTCOMES"}

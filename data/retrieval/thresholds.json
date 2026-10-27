@@ -1,0 +1,7 @@
+{
+  "bm25": {
+    "rule_citations.hit_at_1": {"min": 0.9},
+    "reviewer_questions.hit_at_3": {"min": 0.85},
+    "reviewer_questions.mrr": {"min": 0.75}
+  }
+}

@@ -6,10 +6,10 @@ import uuid
 from datetime import date
 from typing import Annotated, Any
 
-from fastapi import APIRouter, File, Form, HTTPException, Request, Response, UploadFile, status
+from fastapi import APIRouter, File, Form, HTTPException, Query, Request, Response, UploadFile, status
 from fastapi.concurrency import run_in_threadpool
 
-from app.api.schemas import AuditResponse, ErrorResponse, EvalRunRequest, HealthResponse
+from app.api.schemas import AuditResponse, ErrorResponse, EvalRunRequest, HealthResponse, PolicyPassage, PolicySearchResponse
 from app.audit.store import AuditStore
 from app.core.config import Settings
 from app.core.pipeline import CaseProcessor, DocumentInput
@@ -55,6 +55,20 @@ def health(request: Request) -> HealthResponse:
         prompt_version=proc.provider.prompt_version,
         policy_version=proc.policy.policy_version,
         schema_version=SCHEMA_VERSION,
+        retrieval_version=proc.retriever.version if proc.retriever else None,
+    )
+
+
+@router.get("/policy/search", response_model=PolicySearchResponse, tags=["policy"], responses={503: {"model": ErrorResponse}}, summary="Look up handbook text for a question or rule explanation")
+def search_policy(request: Request, q: Annotated[str, Query(min_length=2, max_length=500)], k: Annotated[int, Query(ge=1, le=10)] = 3) -> PolicySearchResponse:
+    retriever = _processor(request).retriever
+    if retriever is None:
+        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "Policy retrieval is disabled (DOCVERIFY_RETRIEVAL_BACKEND=none)")
+    hits = retriever.search(q, k=k)
+    return PolicySearchResponse(
+        query=q,
+        retrieval_version=retriever.version,
+        results=[PolicyPassage(passage_id=h.passage.passage_id, rule_id=h.passage.rule_id, title=h.passage.title, text=h.passage.text, score=h.score, rank=h.rank) for h in hits],
     )
 
 

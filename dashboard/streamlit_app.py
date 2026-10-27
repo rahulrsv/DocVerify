@@ -167,6 +167,11 @@ with tab_underwrite:
             with st.expander(label, expanded=r["outcome"] == "FAIL"):
                 st.markdown(f"**Outcome:** {r['outcome']} · **effect on fail:** {r['fail_effect']} · **severity:** {r['severity']}")
                 st.markdown(r["explanation"])
+                cite = r.get("citation")
+                if cite:
+                    note = "" if cite["matches_rule"] else " · ⚠️ retrieved passage is not this rule's own section"
+                    st.info(f"**Policy handbook · {cite['passage_id']}: {cite['title']}**\n\n{cite['excerpt']}")
+                    st.caption(f"Retrieved by {cite['retriever']} (score {cite['score']}){note}. Citations explain a result; they never change it.")
                 if r["evidence"]:
                     st.json(r["evidence"], expanded=False)
 
